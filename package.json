@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "start": "concurrently \"npm start\" \"cd frontend && npm start\"
+  }
+}
