@@ -10,7 +10,7 @@ export default class Home extends Component {
         <Jumbotron>
           <h2>Welcome to CodeLife</h2>
           <p>This is how to build a website with React, React-Router & React-Bootstrap</p>
-          <Link to="/about">
+          <Link to="/posts">
             <Button bsStyle="primary">Learn More</Button>
           </Link>
         </Jumbotron>
