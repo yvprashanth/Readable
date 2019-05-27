@@ -5,6 +5,8 @@ import Home from './components/Home';
 import Posts from './components/Posts';
 import News from './components/News';
 import Navbar from './components/CustomNavbar';
+import { connect } from 'react-redux'
+
 
 class App extends Component {
   render() {
@@ -21,4 +23,9 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state){
+  return { categories : state.categories }
+}
+
+
+export default connect(mapStateToProps)(App);
