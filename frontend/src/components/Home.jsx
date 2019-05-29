@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { Jumbotron, Grid, Row, Col, Image, Button } from 'react-bootstrap';
 import './Home.css';
-import { loadCategories } from '../actions'
+import { test } from '../actions'
 import { connect } from 'react-redux'
 
 class Home extends Component {
@@ -15,10 +15,14 @@ class Home extends Component {
   }
 
   fetchCategories = () => {
-    this.props.store.dispatch(loadCategories())
+    debugger;
+    this.props.testActionMethod({key: 'value'})
   }
 
   render() {
+    console.log('Props inside Home', this.props)
+    const { testActionMethod } = this.props
+
     return (
       <Grid>
         <Jumbotron>
@@ -51,7 +55,7 @@ class Home extends Component {
             </Link>
           </Col>
         </Row>
-        <Button onClick={this.fetchCategories}>Fetch Categories</Button>
+        <Button onClick={()  => testActionMethod({key: 'value'})}>Fetch Categories</Button>
       </Grid>
     )
   }
@@ -61,5 +65,10 @@ function mapStateToProps(state){
   return { categories : state.categories }
 }
 
+function mapDispatchToProps(dispatch){
+  return {
+    testActionMethod: (data) => dispatch(test(data))
+  }
+}
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps , mapDispatchToProps)(Home)

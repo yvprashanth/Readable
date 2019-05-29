@@ -5,6 +5,7 @@ const headers = {
 }
 
 export const getAllCategories = () => {
+    debugger;
     return fetch('/categories', { headers: headers })
         .then(res => res.json)
         .then(data => data.categories)

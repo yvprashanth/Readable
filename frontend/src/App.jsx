@@ -10,13 +10,14 @@ import { connect } from 'react-redux'
 
 class App extends Component {
   render() {
+    console.log('Props', this.props)
     return (
       <Router>
         <div>
           <Navbar />
-          <Route exact path="/" component={Home} />
-          <Route path="/posts" component={Posts} />
-          <Route path="/news" component={News} />
+          <Route exact path="/" render={() => <Home />} />
+          <Route path="/posts" render={() => <Posts />} />
+          <Route path="/news" render={() => <News />} />
         </div>
       </Router>
     );
@@ -24,7 +25,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state){
-  return { categories : state.categories }
+  return { categories : 'Prashanth' }
 }
 
 

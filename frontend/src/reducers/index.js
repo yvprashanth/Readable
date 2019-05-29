@@ -2,6 +2,9 @@ import * as actionTypes from '../actions/actionTypes'
 import { combineReducers } from 'redux'
 
 const initial_state = {
+    categories: {
+        key: 'app'
+    },
     sunday: {
       breakfast: null,
       lunch: null,
@@ -48,7 +51,7 @@ export function getAllCategories(state = initial_state, action){
     }
 }
 
-export function posts(state = initial_state, action){
+export function getAllPosts(state = initial_state, action){
     switch(action.type){
         case actionTypes.LOAD_POSTS:
             return action.posts
@@ -59,5 +62,5 @@ export function posts(state = initial_state, action){
 
 export default combineReducers({
     getAllCategories,
-    posts
+    getAllPosts
 })
