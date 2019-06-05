@@ -24,8 +24,8 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return { categories : 'Prashanth' }
+function mapStateToProps({categories}){
+  return { categories : categories }
 }
 
 

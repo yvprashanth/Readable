@@ -12,11 +12,11 @@ class Home extends Component {
       posts : [], 
       categories : []
     }
+    this.fetchCategories = this.fetchCategories.bind()
   }
 
   fetchCategories = () => {
-    debugger;
-    this.props.testActionMethod({key: 'value'})
+    this.props.testActionMethod()
   }
 
   render() {
@@ -55,20 +55,18 @@ class Home extends Component {
             </Link>
           </Col>
         </Row>
-        <Button onClick={()  => testActionMethod({key: 'value'})}>Fetch Categories</Button>
+        <Button onClick={this.fetchCategories}>Fetch Categories</Button>
       </Grid>
     )
   }
 }
 
-function mapStateToProps(state){
-  return { categories : state.categories }
+function mapStateToProps({categories}){
+  return { categories : categories }
 }
 
-function mapDispatchToProps(dispatch){
-  return {
-    testActionMethod: (data) => dispatch(test(data))
-  }
+function mapDispatchToProps (dispatch) {
+    testActionMethod: () => dispatch(test())
 }
 
 export default connect(mapStateToProps , mapDispatchToProps)(Home)

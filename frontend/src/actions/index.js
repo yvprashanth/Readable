@@ -6,9 +6,8 @@ export const loadCategories = () => dispatch => {
 }
 
 export const test = () => {
-    return api.getAllCategories().then(
-        data => {
-            console.log(data)
-        }
-    )
+    return dispatch => {
+        api.getAllCategories()
+        .then(data => data)
+    }
 }
