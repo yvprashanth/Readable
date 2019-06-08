@@ -57,7 +57,20 @@ export function posts(state = initial_state, action){
     }
 }
 
+const user = (state = { users: [] }, action) => {
+  switch (action.type) {
+   case 'FETCH_ALL_USERS':
+    return {
+     ...state,
+     users: action.json
+    };
+   default:
+    return state;
+  }
+ };
+
 export default combineReducers({
     categories,
-    posts
+    posts,
+    user
 })

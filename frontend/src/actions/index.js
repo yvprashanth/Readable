@@ -11,3 +11,14 @@ export const test = () => {
         .then(data => data)
     }
 }
+
+
+export const fetchUsers = () => {
+    return dispatch => {
+     fetch('https://my-json-server.typicode.com/typicode/demo/posts')
+       .then(response => response.json())
+       .then(json => dispatch({ type: 'FETCH_ALL_USERS', json }))
+    }
+}
+
+

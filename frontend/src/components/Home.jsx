@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { Jumbotron, Grid, Row, Col, Image, Button } from 'react-bootstrap';
 import './Home.css';
-import { test } from '../actions'
+import { test, fetchUsers } from '../actions'
 import { connect } from 'react-redux'
 
 class Home extends Component {
@@ -16,24 +16,22 @@ class Home extends Component {
   }
 
   fetchCategories = () => {
-    this.props.testActionMethod()
+    this.props.fetchUsers();
   }
 
   render() {
-    console.log('Props inside Home', this.props)
-    const { testActionMethod } = this.props
-
+    const { users } = this.props;
     return (
       <Grid>
         <Jumbotron>
-          <h2>Welcome to Readable</h2>
+        <h2>Welcome to Readable</h2>
           <p>This is how to build a website with React, React-Router, Redux & React-Bootstrap</p>
           <Link to="/posts">
             <Button bsStyle="primary">Learn More</Button>
           </Link>
         </Jumbotron>
         <Row className="show-grid text-center">
-          <Col xs={12} sm={4} className="person-wrapper">
+        <Col xs={12} sm={4} className="person-wrapper">
             <Link to="/posts">
               <Image src="assets/person-1.jpg" circle className="profile-pic"/>
               <h3>Frank</h3>
@@ -56,17 +54,40 @@ class Home extends Component {
           </Col>
         </Row>
         <Button onClick={this.fetchCategories}>Fetch Categories</Button>
-      </Grid>
-    )
+        <section>
+          {
+            users.length > 0 &&
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  users.map(user => 
+                    <tr key={user.id}>
+                      <td>{user.title}</td>
+                    </tr>
+                  )
+                }
+              </tbody>
+            </table>
+          }
+        </section>
+        </Grid>
+    );
   }
 }
 
-function mapStateToProps({categories}){
-  return { categories : categories }
+const mapStateToProps = (state) => {
+  return state.user
 }
 
-function mapDispatchToProps (dispatch) {
-    testActionMethod: () => dispatch(test())
-}
+const mapDispatchToProps = (dispatch) => ({
+    testActionMethod: () => dispatch(test()),
+    fetchUsers: () => dispatch(fetchUsers())
+
+})
 
 export default connect(mapStateToProps , mapDispatchToProps)(Home)
