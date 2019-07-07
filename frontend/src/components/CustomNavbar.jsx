@@ -9,7 +9,7 @@ export default class CustomNavbar extends Component {
       <Navbar default collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/">Readable</Link>
+            <Link to="/">Prashanth Yerramilli</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

@@ -2,21 +2,22 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { Jumbotron, Grid, Row, Col, Image, Button } from 'react-bootstrap';
 import './Home.css';
-import { test, fetchUsers } from '../actions'
+import { fetchUsers } from '../actions'
 import { connect } from 'react-redux'
 
 class Home extends Component {
   constructor(props){
     super(props);
     this.state = {
-      posts : [], 
-      categories : []
+      buttonClicked : false
     }
-    this.fetchCategories = this.fetchCategories.bind()
   }
 
   fetchCategories = () => {
-    this.props.fetchUsers();
+    this.setState({
+      buttonClicked : true
+    })
+    this.props.myLocalFetchUsers();
   }
 
   render() {
@@ -31,12 +32,30 @@ class Home extends Component {
           </Link>
         </Jumbotron>
         <Row className="show-grid text-center">
-        <Col xs={12} sm={4} className="person-wrapper">
-            <Link to="/posts">
+          <Col xs={12} sm={4} className="person-wrapper">
+              {
+              (users.length > 0 && this.state.buttonClicked) ? 
+                (<table>
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      users.map(user => 
+                        <tr key={user.id}>
+                          <td>{user.title}</td>
+                        </tr>
+                      )
+                    }
+                  </tbody>
+                </table>) : <Link to="/posts">
               <Image src="assets/person-1.jpg" circle className="profile-pic"/>
               <h3>Frank</h3>
               <p>That's a crooked tree. We'll send him to Washington. These little son of a guns hide in your brush and you just have to push them out.</p>
             </Link>
+            }
           </Col>
           <Col xs={12} sm={4} className="person-wrapper">
           <Link to="/posts">
@@ -54,27 +73,6 @@ class Home extends Component {
           </Col>
         </Row>
         <Button onClick={this.fetchCategories}>Fetch Categories</Button>
-        <section>
-          {
-            users.length > 0 &&
-            <table>
-              <thead>
-                <tr>
-                  <th>Title</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  users.map(user => 
-                    <tr key={user.id}>
-                      <td>{user.title}</td>
-                    </tr>
-                  )
-                }
-              </tbody>
-            </table>
-          }
-        </section>
         </Grid>
     );
   }
@@ -85,9 +83,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    testActionMethod: () => dispatch(test()),
-    fetchUsers: () => dispatch(fetchUsers())
-
+    myLocalFetchUsers: () => dispatch(fetchUsers())
 })
 
 export default connect(mapStateToProps , mapDispatchToProps)(Home)
