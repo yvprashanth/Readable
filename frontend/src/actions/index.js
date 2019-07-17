@@ -1,8 +1,11 @@
-import * as actionTypes from './actionTypes'
 import * as api from '../utils'
 
-export const loadCategories = () => dispatch => {
-    return api.getAllCategories().then(categories => dispatch(loadCategories(categories)))
+export const fetchCategories = () => {
+    return dispatch => {
+        fetch('http://localhost:5000/categories')
+            .then(response => response.json())
+            .then(json => dispatch({type: 'FETCH_ALL_CATEGORIES', json }))
+    }
 }
 
 export const fetchUsers = () => {

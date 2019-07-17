@@ -58,6 +58,7 @@ export function posts(state = initial_state, action){
 }
 
 const user = (state = { users: [] }, action) => {
+  debugger
   switch (action.type) {
    case 'FETCH_ALL_USERS':
     return {

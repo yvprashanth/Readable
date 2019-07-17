@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Posts from './components/Posts';
 import News from './components/News';
+import CreatePost  from './components/CreatePost';
 import Navbar from './components/CustomNavbar';
 import { connect } from 'react-redux'
-
 
 class App extends Component {
   render() {
@@ -18,6 +18,7 @@ class App extends Component {
           <Route exact path="/" render={() => <Home />} />
           <Route path="/posts" render={() => <Posts />} />
           <Route path="/news" render={() => <News />} />
+          <Route path="/createpost" render={() => <CreatePost />} />
         </div>
       </Router>
     );
@@ -27,6 +28,5 @@ class App extends Component {
 function mapStateToProps({categories}){
   return { categories : categories }
 }
-
 
 export default connect(mapStateToProps)(App);

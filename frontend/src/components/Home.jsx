@@ -22,6 +22,7 @@ class Home extends Component {
 
   render() {
     const { users } = this.props;
+    debugger
     return (
       <Grid>
         <Jumbotron>
@@ -29,6 +30,10 @@ class Home extends Component {
           <p>This is how to build a website with React, React-Router, Redux & React-Bootstrap</p>
           <Link to="/posts">
             <Button bsStyle="primary">Learn More</Button>
+          </Link>
+          &nbsp;
+          <Link to="/createpost">
+            <Button bsStyle="primary">Create Post</Button>
           </Link>
         </Jumbotron>
         <Row className="show-grid text-center">
