@@ -18,7 +18,7 @@ class App extends Component {
           <Route exact path="/" render={() => <Home />} />
           <Route path="/posts" render={() => <Posts />} />
           <Route path="/news" render={() => <News />} />
-          <Route path="/createpost" render={() => <CreatePost />} />
+          <Route path="/createpost" exact render={() => <CreatePost />} />
         </div>
       </Router>
     );

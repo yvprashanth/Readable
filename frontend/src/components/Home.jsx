@@ -22,7 +22,6 @@ class Home extends Component {
 
   render() {
     const { users } = this.props;
-    debugger
     return (
       <Grid>
         <Jumbotron>
